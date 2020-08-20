@@ -1,0 +1,47 @@
+{
+    "version": "0.0.2",
+    "findings": [
+        {
+            "file": "/data/src/main/app/globals.xml",
+            "messages": [
+                {
+                    "message": "Element logger does not contain the attribute category",
+                    "category": "InvalidAttribute",
+                    "lineNumber": 22,
+                    "element": "logger"
+                }
+            ],
+            "aggregations": {
+                "loggerCount": 1,
+                "flowCount": 0
+            }
+        },
+        {
+            "file": "/data/src/main/app/update-plan.xml",
+            "messages": [
+                {
+                    "message": "Element http:request does not have a parent of until-successful",
+                    "category": "InvalidParent",
+                    "lineNumber": 25,
+                    "element": "http:request"
+                },
+                {
+                    "message": "Element http:request does not have a sibling of logger",
+                    "category": "InvalidSibling",
+                    "lineNumber": 25,
+                    "element": "http:request"
+                },
+                {
+                    "message": "Element http:request does not have a sibling of logger",
+                    "category": "InvalidSibling",
+                    "lineNumber": 25,
+                    "element": "http:request"
+                }
+            ],
+            "aggregations": {
+                "loggerCount": 1,
+                "flowCount": 1
+            }
+        }
+    ]
+}

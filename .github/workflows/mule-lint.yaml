@@ -1,0 +1,36 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - trunk
+    tags:
+      - "**"
+
+name: "Run Mule Lint"
+
+jobs:
+  github-action:
+    name: github-action
+    runs-on: ubuntu-18.04
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+      - run: |
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+          git config user.email "mule-lint@github.com"
+          git config user.name "GitHub Actions"
+      - name: "Run action"
+        uses: mule-lint/github-action@master
+        with:
+          rules-path: rules.txt
+          dictionary-path: dictionary.txt
+          source-directory: src/main/app
+          output-file: output.json
+      - run: |
+          git add output.json
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit"
+          else
+            git commit -m "Updated mule-lint findings"
+          fi
+      - run: git push
