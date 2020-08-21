@@ -20,7 +20,7 @@ jobs:
           git config user.email "mule-lint@github.com"
           git config user.name "GitHub Actions"
       - name: "Run action"
-        uses: mule-lint/github-action@master
+        uses: mule-lint/github-action@trunk
         with:
           rules-path: rules.txt
           dictionary-path: dictionary.txt
