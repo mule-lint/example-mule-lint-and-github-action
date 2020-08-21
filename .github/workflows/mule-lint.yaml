@@ -26,11 +26,7 @@ jobs:
           dictionary-path: dictionary.txt
           source-directory: src/main/app
           output-file: output.json
-      - run: |
-          git add output.json
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "No changes to commit"
-          else
-            git commit -m "Updated mule-lint findings"
-          fi
-      - run: git push
+      - uses: actions/upload-artifact@v2
+        with:
+          name: mule-lint-results
+          path: output.json
